@@ -1,4 +1,1 @@
-﻿  an error occurred while setting the initial search directory.
-  searches will be relative to the application's starting directory.
-  compilation failed; no code produced
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(1666,5): error MSB6006: "fxc.exe" はコード 1 を伴って終了しました。
+﻿  GameProgramming.vcxproj -> C:\Users\2200363\Downloads\Version 1.1\project2_2\bin\x64\Debug\GameProgramming.exe
