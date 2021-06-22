@@ -48,7 +48,7 @@ dcl_temps 2
 //   o1.x <- <main return value>.color.x; o1.y <- <main return value>.color.y; o1.z <- <main return value>.color.z; o1.w <- <main return value>.color.w; 
 //   o0.x <- <main return value>.position.x; o0.y <- <main return value>.position.y; o0.z <- <main return value>.position.z; o0.w <- <main return value>.position.w
 //
-#line 7 "D:\project\D\HLSL\DebugVS.hlsl"
+#line 7 "D:\project2_2\HLSL\DebugVS.hlsl"
 mul r0.xyzw, v0.xxxx, cb0[0].xyzw
 mul r1.xyzw, v0.yyyy, cb0[1].xyzw
 add r0.xyzw, r0.xyzw, r1.xyzw
