@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\project\D\bin\x64\Debug\GameProgramming.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\DebugPS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\DebugVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\ImGuiPS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\ImGuiVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\LambertPS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\LambertVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\LinePS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\LineVS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\SpritePS.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\project\D\Shader\SpriteVS.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
