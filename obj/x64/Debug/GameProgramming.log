@@ -1,29 +1,28 @@
-﻿  compilation code save succeeded; see D:\project2_2\Shader\DebugPS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\DebugPS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\DebugVS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\DebugVS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\ImGuiPS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\ImGuiPS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\ImGuiVS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\ImGuiVS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\LambertPS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\LambertPS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\LambertVS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\LambertVS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\LinePS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\LinePS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\LineVS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\LineVS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\SpritePS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\SpritePS.cso
-  compilation code save succeeded; see D:\project2_2\Shader\SpriteVS.cod
-  compilation object save succeeded; see D:\project2_2\Shader\SpriteVS.cso
+﻿  compilation code save succeeded; see D:\project\D\Shader\DebugPS.cod
+  compilation object save succeeded; see D:\project\D\Shader\DebugPS.cso
+  compilation code save succeeded; see D:\project\D\Shader\DebugVS.cod
+  compilation object save succeeded; see D:\project\D\Shader\DebugVS.cso
+  compilation code save succeeded; see D:\project\D\Shader\ImGuiPS.cod
+  compilation object save succeeded; see D:\project\D\Shader\ImGuiPS.cso
+  compilation code save succeeded; see D:\project\D\Shader\ImGuiVS.cod
+  compilation object save succeeded; see D:\project\D\Shader\ImGuiVS.cso
+  compilation code save succeeded; see D:\project\D\Shader\LambertPS.cod
+  compilation object save succeeded; see D:\project\D\Shader\LambertPS.cso
+  compilation code save succeeded; see D:\project\D\Shader\LambertVS.cod
+  compilation object save succeeded; see D:\project\D\Shader\LambertVS.cso
+  compilation code save succeeded; see D:\project\D\Shader\LinePS.cod
+  compilation object save succeeded; see D:\project\D\Shader\LinePS.cso
+  compilation code save succeeded; see D:\project\D\Shader\LineVS.cod
+  compilation object save succeeded; see D:\project\D\Shader\LineVS.cso
+  compilation code save succeeded; see D:\project\D\Shader\SpritePS.cod
+  compilation object save succeeded; see D:\project\D\Shader\SpritePS.cso
+  compilation code save succeeded; see D:\project\D\Shader\SpriteVS.cod
+  compilation object save succeeded; see D:\project\D\Shader\SpriteVS.cso
   WICTextureLoader.cpp
   imgui.cpp
   imgui_demo.cpp
   imgui_draw.cpp
   imgui_widgets.cpp
-  Mathf.cpp
   Audio.cpp
   AudioResource.cpp
   AudioSource.cpp
@@ -31,13 +30,14 @@
   CameraController.cpp
   Character.cpp
   Collision.cpp
+D:\project\D\Source\Character.cpp(75,18): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\project\D\Source\Character.cpp(82,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\project\D\Source\Character.cpp(83,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\project\D\Source\Character.cpp(94,15): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
   Effect.cpp
   EffectManager.cpp
-D:\project2_2\Source\Character.cpp(75,18): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-D:\project2_2\Source\Character.cpp(82,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-D:\project2_2\Source\Character.cpp(83,13): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-D:\project2_2\Source\Character.cpp(94,15): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
   Enemy.cpp
+  EnemyGirl.cpp
   EnemyManager.cpp
   EnemySlime.cpp
   Framework.cpp
@@ -47,13 +47,16 @@ D:\project2_2\Source\Character.cpp(94,15): warning C4244: '初期化中': 'doubl
   LambertShader.cpp
   LineRenderer.cpp
   Model.cpp
+D:\project\D\Source\EnemyGirl.cpp(11,38): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
   ModelResource.cpp
+D:\project\D\Source\EnemySlime.cpp(203,30): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
   Sprite.cpp
   GamePad.cpp
   Input.cpp
   Mouse.cpp
   Logger.cpp
   Main.cpp
+  Mathf.cpp
   Player.cpp
   Projectile.cpp
   ProjectileHoming.cpp
@@ -64,13 +67,15 @@ D:\project2_2\Source\Character.cpp(94,15): warning C4244: '初期化中': 'doubl
   SceneManager.cpp
   SceneTitle.cpp
   Stage.cpp
-D:\project2_2\Source\ProjectileHoming.cpp(64,23): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-D:\project2_2\Source\Player.cpp(230,41): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\project2_2\Source\Player.cpp(449,49): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\project2_2\Source\Player.cpp(482,47): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\project2_2\Source\Player.cpp(492,56): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\project2_2\Source\Player.cpp(496,53): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\project2_2\Source\Player.cpp(508,50): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\project2_2\Source\Player.cpp(527,49): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+  TODO.cpp
+  world.cpp
+D:\project\D\Source\ProjectileHoming.cpp(64,23): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\project\D\Source\Player.cpp(255,41): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\project\D\Source\Player.cpp(543,49): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\project\D\Source\Player.cpp(576,47): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\project\D\Source\Player.cpp(586,56): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\project\D\Source\Player.cpp(590,53): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\project\D\Source\Player.cpp(602,50): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+D:\project\D\Source\Player.cpp(621,49): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
      ライブラリ bin\x64\Debug\GameProgramming.lib とオブジェクト bin\x64\Debug\GameProgramming.exp を作成中
-  GameProgramming.vcxproj -> D:\project2_2\bin\x64\Debug\GameProgramming.exe
+  GameProgramming.vcxproj -> D:\project\D\bin\x64\Debug\GameProgramming.exe

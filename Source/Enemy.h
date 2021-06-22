@@ -21,6 +21,12 @@ public:
     // ソート用関数
     void SetLengthSq(float sq) { lengthSq = sq; }
     float GetLengthSq() const { return lengthSq; }
+    DirectX::XMFLOAT3 GetHeadPos() const { return headPos; }
+    float GetHeadRadius() const { return headRadius; }
+
 protected:
     float lengthSq;
+    float headRadius = 0.2f;
+    DirectX::XMFLOAT3 headPos = {0,0,0};
+
 };
