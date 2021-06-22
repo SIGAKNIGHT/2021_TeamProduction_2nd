@@ -1,6 +1,0 @@
-add_subdirectory("thirdparty/glfw/")
-add_subdirectory("thirdparty/imgui/")
-add_subdirectory("ImGuiPlatform")
-add_subdirectory("glfw")
-add_subdirectory("imgui")
-add_subdirectory("GPUParticle")

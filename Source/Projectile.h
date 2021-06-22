@@ -56,6 +56,6 @@ protected:
     float radius = 0.5f;
     //  HACK衝撃値:自分で追加　各弾ごとに変更する。
     DirectX::XMFLOAT3 velocity = { 0,0,0 };
-    float impluse = 10.0f;
+    float impluse = 5.0f;
     float gravity = -0.05f;
 };

@@ -88,7 +88,7 @@ bool Collision::IntersectSphererVsCylinder(
 )
 {
     // A‚Ì‘«Œ³‚ªB‚Ì“ª‚æ‚èã‚È‚ç“–‚½‚Á‚Ä‚¢‚È‚¢
-    if (spherePosition.y > cylinderPosition.y + cylinderHeight)
+    if (spherePosition.y - sphereRadius > cylinderPosition.y + cylinderHeight)
     {
         return false;
     }

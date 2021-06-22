@@ -6,6 +6,8 @@
 // 初期化
 void SceneGame::Initialize()
 {
+	// HACK
+	world = new World();
 	// ステージの初期化
 	stage = new Stage();
 	// プレイヤーの初期化
@@ -19,6 +21,13 @@ void SceneGame::Initialize()
 		EnemySlime* slime = new EnemySlime();
 		slime->SetPosition(DirectX::XMFLOAT3(i * 3.0f, 0, 5));
 		enemyManager.Register(slime);
+	}
+
+	for (int i = 0; i < 5; ++i)
+	{
+		EnemyGirl* girl = new EnemyGirl();
+		girl->SetPosition(DirectX::XMFLOAT3(i * 2.0f - 3, 0, 10));
+		enemyManager.Register(girl);
 	}
 
 	// カメラの初期設定
@@ -37,17 +46,32 @@ void SceneGame::Initialize()
 	);
 	// カメラコントローラーの初期化
 	cameraController = new CameraController();
+	// スプライト初期化
+	reticle = new Sprite("Data/Sprite/reticle.png");
 }
 
 // 終了化
 void SceneGame::Finalize()
 {
+	// レティクル削除
+	if (reticle != nullptr)
+	{
+		delete reticle;
+		reticle = nullptr;
+	}
 	// カメラコントローラーの終了化
 	if (cameraController != nullptr)
 	{
 		delete cameraController;
 		cameraController = nullptr;
 	}
+	// HACK
+	if (world != nullptr)
+	{
+		delete world;
+		world = nullptr;
+	}
+
 	// ステージの終了化
 	if (stage != nullptr)
 	{
@@ -71,6 +95,8 @@ void SceneGame::Update(float elapsedTime)
 	target.y += 1.0f;
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
+	// HaCK
+	world->Update(elapsedTime);
 	// ステージの更新処理
 	stage->Update(elapsedTime);
 	// エネミー更新処理
@@ -102,26 +128,6 @@ void SceneGame::Render()
 	// 描画処理
 	RenderContext rc;
 	rc.lightDirection = { 0.0f, -1.0f, 0.0f, 0.0f };	// ライト方向（下方向）
-														
-    // // ビュー行列
-	// DirectX::XMFLOAT3 eye = { 0,10,-10 };
-	// DirectX::XMFLOAT3 focus = { 0,0,0 };
-	// DirectX::XMFLOAT3 up = { 0,1,0 };
-	// 
-	// DirectX::XMVECTOR Eye = DirectX::XMLoadFloat3(&eye);
-	// DirectX::XMVECTOR Focus = DirectX::XMLoadFloat3(&focus);
-	// DirectX::XMVECTOR Up = DirectX::XMLoadFloat3(&up);
-	// DirectX::XMMATRIX View = DirectX::XMMatrixLookAtLH(Eye, Focus, Up);
-	// DirectX::XMStoreFloat4x4(&rc.view, View);
-	// // プロジェクション行列
-	// // constexpr
-	// float fovY = DirectX::XMConvertToRadians(45);
-	// float aspectRatio = graphics.GetScreenWidth() / graphics.GetScreenHeight();
-	// float nearZ = 0.1f;
-	// float farZ = 1000.0f;
-	// DirectX::XMMATRIX Projection = DirectX::XMMatrixPerspectiveFovLH(fovY, aspectRatio, nearZ, farZ);
-	// DirectX::XMStoreFloat4x4(&rc.projection, Projection);
-
 
 	// カメラパラメータ設定
 	Camera& camera = Camera::Instance();
@@ -132,6 +138,8 @@ void SceneGame::Render()
 	{
 		Shader* shader = graphics.GetShader();
 		shader->Begin(dc, rc);
+		// HACK
+		world->Render(dc, shader);
 		// ステージ描画
 		stage->Render(dc, shader);
 		// プレイヤー描画
@@ -144,6 +152,20 @@ void SceneGame::Render()
 		EffectManager::Instance().Render(rc.view, rc.projection);
 	}
 
+	// 2Dスプライト描画
+	{
+		float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+		float screenHeight = static_cast<float>(graphics.GetScreenHeight());
+		float textureWidth = static_cast<float>(reticle->GetTextureWidth());
+		float textureHeight = static_cast<float>(reticle->GetTextureHeight());
+		float posX = (screenWidth * 0.5f) - (textureWidth * 0.5f);
+		float posY = (screenHeight * 0.5f) - (textureHeight * 0.5f);
+		// タイトルスプライト描画
+		reticle->Render(dc, posX, posY, textureWidth, textureHeight, 0, 0, textureWidth, textureHeight, 0, 1, 1, 1, 1);
+		
+	}
+
+
 	// 3Dデバッグ描画
 	{
 		player->DrawDebugPrimitive();
@@ -153,11 +175,6 @@ void SceneGame::Render()
 
 		// デバッグレンダラ描画実行
 		graphics.GetDebugRenderer()->Render(dc, rc.view, rc.projection);
-	}
-
-	// 2Dスプライト描画
-	{
-
 	}
 
 	// 2DデバッグGUI描画

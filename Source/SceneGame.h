@@ -1,11 +1,14 @@
 #pragma once
 
+#include "world.h"
 #include "Stage.h"
 #include "Player.h"
 #include "CameraController.h"
 #include "EnemyManager.h"
 #include "EnemySlime.h"
+#include "EnemyGirl.h"
 #include "Scene.h"
+#include "Graphics/Sprite.h"
 
 // ÉQÅ[ÉÄÉVÅ[Éì
 class SceneGame : public Scene
@@ -27,8 +30,13 @@ public:
 	void Render() override;
 private:
 	Stage* stage = nullptr;
+
+	// HACK í«â¡
+	World* world = nullptr;
+
 	Player* player = nullptr;
 	// EnemyManager* enemyManager = nullptr;
 	// EnemySlime* enemySlime = nullptr;
 	CameraController* cameraController = nullptr;
+	Sprite* reticle = nullptr;
 };

@@ -171,10 +171,16 @@
     <ClInclude Include="Source\ProjectileStraight.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Mathf.h">
+    <ClInclude Include="Source\common.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\common.h">
+    <ClInclude Include="Source\world.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mathf.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyGirl.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
@@ -302,7 +308,16 @@
     <ClCompile Include="Source\ProjectileStraight.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Mathf.cpp">
+    <ClCompile Include="Source\TODO.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\world.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mathf.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnemyGirl.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

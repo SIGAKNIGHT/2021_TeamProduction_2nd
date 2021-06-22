@@ -13,6 +13,9 @@ public:
     Player();
     ~Player() override;
 
+    // インスタンス取得 // プレイヤーに直でインスタンスを作るとコンストラクタを通らない可能性あり、マネージャー作るほうが安全
+    static Player& Instance();
+
     // 更新処理
     void Update(float elapsedTime);
     // 弾丸と敵の衝突判定
@@ -31,6 +34,9 @@ private:
     DirectX::XMFLOAT3 GetMoveVec() const;
     // 移動入力処理
     bool InputMove(float elapsedTime);
+    
+    // ヘッドショット
+    void CollisionProjectileVsHead();
     // プレイヤーとエネミーとの衝突判定
     void CollisionPlayerVsEnemies();
     // ノードとエネミーの衝突処理
@@ -73,9 +79,30 @@ private:
     // 攻撃ステート更新処理
     void UpdateAttackState(float elapsedTime);
 
+    // ダメージステートへ遷移
+    void TransitionDamageState();
+    // ダメージステート更新処理
+    void UpdateDamageState(float elapsedTime);
+
+    // 死亡ステートへ遷移
+    void TransitionDeathState();
+    // 死亡ステート更新処理
+    void UpdateDeathState(float elapsedTime);
+
+    // 復活ステートへ遷移
+    void TransitionReviveState();
+    // 復活ステート更新処理
+    void UpdateReviveState(float elapsedTime);
+
+
 protected:
     // 着地した時に呼ばれる
     void OnLanding() override;
+
+     //ダメージを受けた時に呼ばれる
+    void OnDamage() override;
+    // 死亡した時に呼ばれる
+    void OnDead() override;
 
 private:
     // アニメーション
@@ -102,6 +129,9 @@ private:
         Jump,
         Land,
         Attack,
+        Damage,
+        Death,
+        Revive,
     };
 
 private:

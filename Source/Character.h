@@ -86,11 +86,12 @@ protected:
     bool isGround = false;
     float height = 2.0f;
     int health = 5;
-    float  invincibleTimer = 1.0f;
+    float  invincibleTimer = 0.0f;
     float friction = 0.5f;
     float acceleration = 1.0f;
     float maxMoveSpeed = 5.0f;
     float moveVecX = 0.0f;
     float moveVecZ = 0.0f;
     float airControl = 0.3f;
+    int maxHealth = 5;
 };

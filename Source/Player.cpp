@@ -9,9 +9,20 @@
 #include "ProjectileHoming.h"
 #include "CameraController.h"
 
+static Player* instance = nullptr;
+
+// インスタンス取得
+Player& Player::Instance()
+{
+    return *instance;
+}
+
 // コンストラクタ
 Player::Player()
 {
+    // インスタンスポインタ設定
+    instance = this;
+
     //model = new Model("Data/Model/Mr.Incredible/Mr.Incredible.mdl");
     model = new Model("Data/Model/Jummo/Jummo.mdl");
     // model->PlayAnimation(0);
@@ -54,15 +65,30 @@ void Player::Update(float elapsedTime)
     case State::Attack:
         UpdateAttackState(elapsedTime);
         break;
+    case State::Damage:
+        UpdateDamageState(elapsedTime);
+        break;
+    case State::Death:
+        UpdateDeathState(elapsedTime);
+        break;
+    case State::Revive:
+        UpdateReviveState(elapsedTime);
+        break;
     }
     // 速力更新処理
     UpdateVelocity(elapsedTime);
+
+    // 無敵時間更新処理
+    UpdateInvincibleTimer(elapsedTime);
 
     // 弾丸更新処理
     projectileManager.Update(elapsedTime);
 
     // プレイヤーと敵の衝突処理
     CollisionPlayerVsEnemies();
+
+    // ヘッドの衝突処理
+    CollisionProjectileVsHead();
 
     // 弾丸と敵の衝突判定
     CollisionProjectilesVsEnemies();
@@ -188,9 +214,8 @@ bool Player::InputMove(float elapsedTime)
 {
     // 進行ベクトル取得
     DirectX::XMFLOAT3 moveVec = GetMoveVec();
-
-    // 移動処理
-    // Move(moveVec.x, moveVec.z, moveSpeed);
+    // 移動処理0
+    Move(sinf(angle.y), cosf(angle.y), elapsedTime * 50);
 
     // 旋回処理
     // Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
@@ -310,11 +335,26 @@ bool Player::InputAttack()
 void Player::OnLanding()
 {
     jumpCount = jumpLimit;
-    // 下方向の速力が一定以上なら着地ステートへ
-    if (velocity.y < 0.0f)
+    // ダメージ、死亡ステート時は着地した時にステート遷移しないようにする
+    if (state != State::Damage && state != State::Death && velocity.y < 0.0f)
     {
+        // 着地ステートへ遷移
         TransitionLandState();
     }
+}
+
+// ダメージを受けたときに呼ばれる
+void Player::OnDamage()
+{
+    // ダメージステートへ遷移
+    TransitionDamageState();
+}
+
+// 死亡した時に呼ばれる
+void Player::OnDead()
+{
+    // 死亡ステートへ遷移
+    TransitionDeathState();
 }
 
 // 弾丸入力処理
@@ -327,9 +367,9 @@ void Player::InputProjectile()
     if (mouse.GetButton() & Mouse::BTN_LEFT)
     {
         projectileSpeed += 1.0f;
-        if (projectileSpeed > 40.0f)
+        if (projectileSpeed > 70.0f)
         {
-            projectileSpeed = 40.0f;
+            projectileSpeed = 70.0f;
         }
     }
     if (mouse.GetButtonUp() & Mouse::BTN_LEFT)
@@ -350,6 +390,60 @@ void Player::InputProjectile()
         projectileSpeed = 10;
     }
 }
+// ヘッドショット衝突処理
+void Player::CollisionProjectileVsHead()
+{
+    EnemyManager& enemyManager = EnemyManager::Instance();
+
+    // 全ての弾丸と全ての敵を総当たりで衝突判定
+    int projectileCount = projectileManager.GetProjectileCount();
+    int enemyCount = enemyManager.GetEnemyCount();
+    for (int i = 0; i < projectileCount; ++i)
+    {
+        Projectile* projectile = projectileManager.GetProjectile(i);
+        for (int j = 0; j < enemyCount; ++j)
+        {
+            Enemy* enemy = enemyManager.GetEnemy(j);
+            // 衝突判定
+            DirectX::XMFLOAT3 outPosition;
+            if (Collision::IntersectSphereVsSphere(
+                projectile->GetPosition(),
+                projectile->GetRadius(),
+                enemy->GetHeadPos(),
+                enemy->GetHeadRadius(),
+                outPosition))
+            {
+                // ダメージを与える
+                if (enemy->ApplyDamage(5, 0.5f))
+                {
+                    // 吹き飛ばす
+                    {
+                        DirectX::XMFLOAT3 impluse;
+                        float xl = enemy->GetPosition().x - projectile->GetPosition().x;
+                        float zl = enemy->GetPosition().z - projectile->GetPosition().z;
+                        float xzLength = sqrtf(powf(xl, 2) + powf(zl, 2));
+                        xl /= xzLength;
+                        zl /= xzLength;
+                        impluse.x = xl * projectile->GetImpluse();
+                        impluse.y = projectile->GetImpluse();
+                        impluse.z = zl * projectile->GetImpluse();
+                        enemy->AddImpulse(impluse);
+                    }
+
+                    // ヒットエフェクト再生
+                    {
+                        DirectX::XMFLOAT3 e = enemy->GetPosition();
+                        e.y += enemy->GetHeight() * 0.5f;
+                        hitEffect->Play(e);
+                    }
+                    // 弾丸破棄
+                    projectile->Destroy();
+                }
+            }
+        }
+    }
+}
+
 
 // 弾丸と敵の衝突処理
 void Player::CollisionProjectilesVsEnemies()
@@ -549,5 +643,68 @@ void Player::UpdateAttackState(float elapsedTime)
     {
         // 左手ノードとエネミーの衝突処理
         CollisionNodeVsEnemies("mixamorig:LeftHand", lehtHandRadius);
+    }
+}
+
+// ダメージステートへ遷移
+void Player::TransitionDamageState()
+{
+    state = State::Damage;
+
+    // ダメージアニメーション再生
+    model->PlayAnimation(Anim_GetHit1, false);
+}
+
+// ダメージステート更新処理
+void Player::UpdateDamageState(float elapsedTime)
+{
+    // ダメージアニメーションが終わったら待機ステートへ遷移
+    if (!model->IsPlayAnimation())
+    {
+        TransitionIdleState();
+    }
+}
+
+// 死亡ステートへ遷移
+void Player::TransitionDeathState()
+{
+    state = State::Death;
+    // 死亡アニメーション再生
+
+    model->PlayAnimation(Anim_Death, false);
+}
+
+// 死亡ステート更新処理
+void Player::UpdateDeathState(float elapsedTime)
+{
+    if (!model->IsPlayAnimation())
+    {
+        // ボタンを押したら復活ステートへ遷移
+        GamePad& gamePad = Input::Instance().GetGamePad();
+        if (gamePad.GetButtonDown() & GamePad::BTN_A)
+        {
+            TransitionReviveState();
+        }
+    }
+}
+
+// 復活ステートへ遷移
+void Player::TransitionReviveState()
+{
+    state = State::Revive;
+
+    // 体力回復
+    health = maxHealth;
+    // 復活アニメーション再生
+    model->PlayAnimation(Anim_Revive, false);
+}
+
+// 復活ステート更新処理
+void Player::UpdateReviveState(float elapsedTime)
+{
+    // 復活アニメーション終了後に待機ステートへ遷移
+    if (!model->IsPlayAnimation())
+    {
+        TransitionIdleState();
     }
 }

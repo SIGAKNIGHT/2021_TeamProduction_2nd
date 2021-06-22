@@ -26,6 +26,8 @@ Framework::Framework(HWND hWnd)
 	// シーン初期化
 	// sceneGame.Initialize();
 	SceneManager::Instance().ChangeScene(new SceneTitle);
+	// マウスポインタ削除
+	// ShowCursor(false);
 }
 
 // デストラクタ
