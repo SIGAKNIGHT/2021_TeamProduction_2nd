@@ -94,7 +94,7 @@ dcl_temps 6
 //   o1.x <- <main return value>.texcoord.x; o1.y <- <main return value>.texcoord.y; 
 //   o0.x <- <main return value>.position.x; o0.y <- <main return value>.position.y; o0.z <- <main return value>.position.z; o0.w <- <main return value>.position.w
 //
-#line 14 "C:\Users\2200363\Downloads\Version 1.1\project2_2\HLSL\LambertVS.hlsl"
+#line 14 "D:\ECC 2年\2年チE"
 itof r0.xyz, l(0, 0, 0, 0)  // r0.x <- p.x; r0.y <- p.y; r0.z <- p.z
 
 #line 15

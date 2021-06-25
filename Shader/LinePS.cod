@@ -27,7 +27,7 @@ dcl_output o0.xyzw
 //   v1.x <- pin.color.x; v1.y <- pin.color.y; v1.z <- pin.color.z; v1.w <- pin.color.w; 
 //   o0.x <- <main return value>.x; o0.y <- <main return value>.y; o0.z <- <main return value>.z; o0.w <- <main return value>.w
 //
-#line 6 "C:\Users\2200363\Downloads\Version 1.1\project2_2\HLSL\LinePS.hlsl"
+#line 6 "D:\ECC 2年\2年チE"
 mov o0.xyzw, v1.xyzw
 ret 
 // Approximately 2 instruction slots used

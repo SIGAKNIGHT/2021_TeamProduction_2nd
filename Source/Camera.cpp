@@ -4,9 +4,9 @@
 void Camera::SetLookAt(const DirectX::XMFLOAT3& eye, const DirectX::XMFLOAT3& focus, const DirectX::XMFLOAT3& up)
 {
     // 視点、注視点、上方向空のビュー行列を作成
-    DirectX::XMVECTOR Eye   = DirectX::XMLoadFloat3(&eye);
-    DirectX::XMVECTOR Focus = DirectX::XMLoadFloat3(&focus);
-    DirectX::XMVECTOR Up    = DirectX::XMLoadFloat3(&up);
+    DirectX::XMVECTOR Eye   = DirectX::XMLoadFloat3(&eye);      // 視点
+    DirectX::XMVECTOR Focus = DirectX::XMLoadFloat3(&focus);    // 注視点
+    DirectX::XMVECTOR Up    = DirectX::XMLoadFloat3(&up);       // 上方向
     DirectX::XMMATRIX View  = DirectX::XMMatrixLookAtLH(Eye, Focus, Up); // XMMatrixLookAtLH LHはLeftHand
     DirectX::XMStoreFloat4x4(&view, View); // XMFLOATにXMVECTORの値を変換
     // ビューを逆行列化し、ワールド行列に戻す

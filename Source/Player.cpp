@@ -106,15 +106,15 @@ void Player::Update(float elapsedTime)
 // 描画処理
 void Player::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
-    shader->Draw(dc, model);
+    //shader->Draw(dc, model);
     projectileManager.Render(dc, shader);
 }
 
 // デバッグ用GUI描画
 void Player::DrawDebugGUI()
 {
-    ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowPos(ImVec2(0, 65), ImGuiCond_Once);
+    ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_Once);
 
     if (ImGui::Begin("Player", nullptr, ImGuiWindowFlags_None))
     {

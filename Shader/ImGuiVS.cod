@@ -56,7 +56,7 @@ dcl_temps 3
 //   o1.x <- <main return value>.texcoord.x; o1.y <- <main return value>.texcoord.y; 
 //   o0.x <- <main return value>.position.x; o0.y <- <main return value>.position.y; o0.z <- <main return value>.position.z; o0.w <- <main return value>.position.w
 //
-#line 7 "C:\Users\2200363\Downloads\Version 1.1\project2_2\HLSL\ImGuiVS.hlsl"
+#line 7 "D:\ECC 2年\2年チE"
 mul r0.xyzw, v0.xxxx, cb0[0].xyzw
 mul r1.xyzw, v0.yyyy, cb0[1].xyzw
 add r0.xyzw, r0.xyzw, r1.xyzw

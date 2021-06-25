@@ -180,6 +180,8 @@ void SceneGame::Render()
 	// 2DデバッグGUI描画
 	{
 		player->DrawDebugGUI();
-		cameraController->DrawDebugGUI();
+		cameraController->DrawCameraDebugGUI();
+		cameraController->DrawCameraViewDebugGUI();
+		cameraController->DrawTestDebugGUI();
 	}
 }
