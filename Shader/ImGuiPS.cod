@@ -41,7 +41,7 @@ dcl_temps 1
 //   v2.x <- pin.color.x; v2.y <- pin.color.y; v2.z <- pin.color.z; v2.w <- pin.color.w; 
 //   o0.x <- <main return value>.x; o0.y <- <main return value>.y; o0.z <- <main return value>.z; o0.w <- <main return value>.w
 //
-#line 9 "C:\Users\2200363\Downloads\Version 1.1\project2_2\HLSL\ImGuiPS.hlsl"
+#line 9 "C:\Users\2200136\Desktop\2021_TeamProduction_2nd\HLSL\ImGuiPS.hlsl"
 sample_indexable(texture2d)(float,float,float,float) r0.xyzw, v1.xyxx, t0.xyzw, s0
 mul o0.xyzw, r0.xyzw, v2.xyzw
 ret 

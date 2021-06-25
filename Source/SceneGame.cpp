@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "EffectManager.h"
 
+
 // 初期化
 void SceneGame::Initialize()
 {
@@ -90,6 +91,8 @@ void SceneGame::Finalize()
 // 更新処理
 void SceneGame::Update(float elapsedTime)
 {
+	
+
 	// カメラコントローラー更新処理
 	DirectX::XMFLOAT3 target = player->GetPosition();
 	target.y += 1.0f;
@@ -109,6 +112,7 @@ void SceneGame::Update(float elapsedTime)
 
 	// エフェクト更新処理
 	EffectManager::Instance().Update(elapsedTime);
+	
 }
 
 // 描画処理

@@ -24,7 +24,7 @@ void GamePad::Update()
 		if (pad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT)				newButtonState |= BTN_RIGHT;
 		if (pad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN)				newButtonState |= BTN_DOWN;
 		if (pad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)				newButtonState |= BTN_LEFT;
-		if (pad.wButtons & XINPUT_GAMEPAD_A)						newButtonState |= BTN_A;
+		if (pad.wButtons & XINPUT_GAMEPAD_A)						newButtonState |= VK_TAB;
 		if (pad.wButtons & XINPUT_GAMEPAD_B)						newButtonState |= BTN_B;
 		if (pad.wButtons & XINPUT_GAMEPAD_X)						newButtonState |= BTN_X;
 		if (pad.wButtons & XINPUT_GAMEPAD_Y)						newButtonState |= BTN_Y;

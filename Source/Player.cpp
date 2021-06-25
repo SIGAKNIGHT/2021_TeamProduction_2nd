@@ -28,7 +28,7 @@ Player::Player()
     // model->PlayAnimation(0);
 
     // モデルが大きいのでスケーリング
-    scale.x = scale.y = scale.z = 0.01f;
+    scale.x = scale.y = scale.z = 0.0f;
 
     // ヒットエフェクト読み込み
     hitEffect = new Effect("Data/Effect/Hit.efk");

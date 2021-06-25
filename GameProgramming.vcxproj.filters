@@ -183,6 +183,9 @@
     <ClInclude Include="Source\EnemyGirl.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SceneGameOver.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -318,6 +321,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\EnemyGirl.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneGameOver.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

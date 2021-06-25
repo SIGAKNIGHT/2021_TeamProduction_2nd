@@ -9,6 +9,7 @@
 #include "EnemyGirl.h"
 #include "Scene.h"
 #include "Graphics/Sprite.h"
+#include "Input/Input.h"
 
 // ÉQÅ[ÉÄÉVÅ[Éì
 class SceneGame : public Scene
@@ -39,4 +40,6 @@ private:
 	// EnemySlime* enemySlime = nullptr;
 	CameraController* cameraController = nullptr;
 	Sprite* reticle = nullptr;
+
+	bool isPouse;
 };
